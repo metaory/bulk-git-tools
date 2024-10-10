@@ -1,0 +1,42 @@
+#!/bin/bash
+
+BASE=$(dirname "$(realpath "$0")")
+# shellcheck source-path=$BASE
+source "${BASE}/utils/xecho.sh"
+
+xecho "5:[ GIT-RESET-LOCAL ]"
+
+U=$(git remote get-url origin)
+C=$(git symbolic-ref --short -q HEAD)
+
+sleep 3
+
+function wipe {
+  rm -rfv .git
+  git init
+  git clean -fdx
+  git remote add origin "$U"
+}
+
+xecho "6:fetch.."
+git status || wipe
+# git fetch --all --prune
+git log --pretty=medium -3 | tspin
+
+git fetch --prune --set-upstream origin "$C" || wipe
+
+xecho "4:[$CUR] ${U}"
+
+# git diff-index --quiet HEAD || ()
+xecho "6:stashing.."
+git stash || :
+
+xecho "3:reset.."
+# C="$(git rev-parse --abbrev-ref @)"
+
+git reset --hard "origin/${C}" || :
+
+xecho "4:  -----------------------------"
+git log --pretty=medium -2 | tspin
+
+# vim: ft=bash

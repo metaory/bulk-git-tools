@@ -1,0 +1,25 @@
+#!/bin/bash
+
+BASE=$(dirname "$(realpath "$0")")
+# shellcheck source-path=$BASE
+source "${BASE}/utils/xecho.sh"
+
+D="${1:-4}"
+C=0
+mapfile -t TARGETS < <(find . -maxdepth "$D" -type d -path '*/.git' -printf '%h\n')
+TARGET_COUNT="${#TARGETS[@]}"
+
+xecho "6:TARGET_COUNT $TARGET_COUNT"
+
+sleep 3
+
+for U in "${TARGETS[@]}"; do
+  ((C++))
+  xecho "5:_______________________________"
+  xecho "3:\t[${C}/${TARGET_COUNT}]"
+  cd "$U" && git-reset-local
+  cd "$OLDPWD" || xecho "1:FATAL_CD :::: $OLDPWD"
+  sleep 1
+done
+
+# vim: ft=bash

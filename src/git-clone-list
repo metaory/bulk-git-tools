@@ -1,0 +1,8 @@
+#!/bin/bash
+
+FILE="${1:?BAD_FILE}"; [ -f "$FILE" ] || exit 1
+
+while read -r U; do
+  git clone "$U"
+done < "$FILE"
+
