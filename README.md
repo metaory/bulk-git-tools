@@ -1,7 +1,7 @@
 <div align="center">
   <img src=".github/assets/logo.png" width="168px"/>
   <h2>BULK-GIT-TOOLS</h2>
-  <h4>small collection of git bulk operations</h4>
+  <h4>small collection of git bulk scripts</h4>
   <hr/>
   <a href="#installation">Installation</a> |
   <a href="#scripts">Scripts</a> |
