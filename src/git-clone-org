@@ -4,7 +4,7 @@ O="${1:?BAD_ORG}"
 
 BASE=$(dirname "$(realpath "$0")")
 # shellcheck source-path=$BASE
-source "${BASE}/utils/xecho.sh"
+source "${BASE%/*}/utils/xecho.sh"
 
 xecho "3: 􀇿  CLONING ALL PUBLIC ACTIVE ORIGIN REPOS"
 xecho "4: ⌜${O}⌟"

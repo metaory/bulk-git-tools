@@ -2,7 +2,7 @@
 
 BASE=$(dirname "$(realpath "$0")")
 # shellcheck source-path=$BASE
-source "${BASE}/utils/xecho.sh"
+source "${BASE%/*}/utils/xecho.sh"
 
 D="${1:-4}"
 C=0
