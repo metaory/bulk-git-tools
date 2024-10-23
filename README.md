@@ -51,6 +51,9 @@ Clones all public repositories from a specified organization
 Dumps all Git repositories in the current working directory into a structured file,
 including essential information like remote URLs and local paths.
 
+### [git-open-repo](src/git-open-repo)
+Open the Git repository in the current working directory in browser.
+
 ---
 
 License

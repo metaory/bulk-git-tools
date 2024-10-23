@@ -1,0 +1,36 @@
+#!/bin/bash
+
+BASE=$(dirname "$(realpath "$0")")
+# shellcheck source-path=$BASE
+source "${BASE%/*}/utils/xecho.sh"
+
+declare browser
+
+declare -a browsers=(google-chrome chromium)
+
+for app in "${browsers[@]}"; do
+  command -v "$app" >/dev/null && browser="$app"
+done
+
+[ "$browser" = "" ] && {
+  xecho "1:[ERROR] NO BROWSER"
+  exit 1
+}
+
+[ -d .git ] || {
+  xecho "1:[ERROR] NO GIT RPOSITORY"
+  exit 1
+}
+
+read -r remote < <(git remote get-url --push origin)
+
+declare url="${remote#*@}"
+
+url="${url/:/\/}"
+url="https://${url%.*}"
+
+xecho "3:$url" && sleep 2
+
+"$browser" --app="$url" &
+
+# vim: ft=bash
