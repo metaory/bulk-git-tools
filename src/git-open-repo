@@ -29,7 +29,7 @@ declare url="${remote#*@}"
 url="${url/:/\/}"
 url="https://${url%.*}"
 
-xecho "3:$url" && sleep 2
+xecho "3:$url" && sleep 1
 
 "$browser" --app="$url" &
 
