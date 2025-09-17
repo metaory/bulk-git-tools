@@ -54,6 +54,12 @@ including essential information like remote URLs and local paths.
 ### [git-open-repo](src/git-open-repo)
 Open the Git repository in the current working directory in browser.
 
+### [git-pack](src/git-pack)
+Scans directory for Git repos, saves origin URLs to `/tmp/git-pack` with preserved structure
+
+### 🚧 TODO 🚧 [git-unpack](src/git-unpack)
+Restores Git repos from /tmp/git-pack manifest (work in progress)
+
 ---
 
 License

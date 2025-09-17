@@ -18,8 +18,4 @@ done
 
 tree  "$OUT"
 
-# git pack-objects --all --stdout > $OUT/$(basename $line).pack
-# cd - &> /dev/null
-# find . -type d -name .git -exec dirname {} \;
-
 # vim: ft=bash
