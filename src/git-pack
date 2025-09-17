@@ -1,0 +1,25 @@
+#!/usr/bin/env bash
+
+echo "PWD: $(pwd)"
+
+OUT=/tmp/git-pack
+
+rm -rf $OUT &> /dev/null
+
+mkdir $OUT &> /dev/null
+
+mapfile -t TARGETS < <(find . -type d -name .git -exec dirname {} \;)
+
+for repo in "${TARGETS[@]}"; do
+    echo -e "\nProcessing \e[33m$repo\e[0m"
+    mkdir -p "$OUT/$repo"
+    git -C "$repo" remote get-url origin > "$OUT/$repo/origin"
+done 
+
+tree  "$OUT"
+
+# git pack-objects --all --stdout > $OUT/$(basename $line).pack
+# cd - &> /dev/null
+# find . -type d -name .git -exec dirname {} \;
+
+# vim: ft=bash
